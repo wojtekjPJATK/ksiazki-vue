@@ -1,13 +1,14 @@
 <template>
-    <div id="app">
+    <div class="app">
         <ul class="nav">
             <li id="logo"><router-link :to="{ name: 'home' }"><img src="./assets/logo.png" alt=""/></router-link></li>
+            <li v-if="isLoggedIn"><span class="email gray-text">{{currentUser}}</span></li>
             <li><router-link :to="{ name: 'home' }">Home</router-link></li>
             <li><router-link :to="{ name: 'books' }">Books</router-link></li>
-            <li><router-link :to="{ name: 'favorites' }">Favorites</router-link></li>
-            <li><router-link :to="{ name: 'login' }">Login</router-link></li>
-            <li><router-link :to="{ name: 'register' }">Register</router-link></li>
-            <li><router-link :to="{ name: 'logout' }">Logout</router-link></li>
+            <li v-if="isLoggedIn"><router-link :to="{ name: 'favorites' }">Favorites</router-link></li>
+            <li v-if="!isLoggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>
+            <li v-if="!isLoggedIn"><router-link :to="{ name: 'register' }">Register</router-link></li>
+            <li v-if="isLoggedIn"><button v-on:click="logout" class="btn gray">Logout</button></li>
 
         </ul>
 
@@ -17,8 +18,32 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      isLoggedIn: false,
+      currentUser: false,
+    }
+  },
+  created() {
+    if (firebase.auth().currentUser) {
+      this.isLoggedIn = true
+      this.currentUser = firebase.auth().currentUser.email
+    }
+    else {
+      this.isLoggedIn = false
+    }
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.go({path: this.$router.path})
+      })
+    }
+  }
 }
 </script>
 
@@ -61,7 +86,15 @@ export default {
   }
 
   .nav img {
-    padding-right: 1050px;
+    position: absolute;
+    left: 20px;
     height: 40px;
+  }
+
+  .email {
+    font-size: 14px;
+  }
+  label {
+    margin-top: -15px;
   }
 </style>

@@ -3,16 +3,23 @@
 import Vue from 'vue'
 import router from './router'
 import App from './App'
+import { store } from './store/store'
+import firebase from 'firebase'
+import 'firebase'
 
-
+let app
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router: router,
+      components: { App },
+      template: '<App/>',
+      store: store
+    })
+  }
+})
 window.eventBus = new Vue()
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router: router,
-  components: { App },
-  template: '<App/>'
-})
