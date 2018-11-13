@@ -25,12 +25,13 @@ export default {
             'title': this.book.title,
             'authors': this.book.authors,
             'genre': this.book.genre,
-            'favorited': true
+            'favorited': this.book.favorite
         }
     },
     methods: {
         favorite() {
-            this.favorited = !this.favorited
+            ;//this.favorited = !this.favorited
+            // TODO make change in the DB 
         }
     }
 }

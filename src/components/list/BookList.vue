@@ -14,11 +14,15 @@ export default {
     },
     created() {
         this.$store.dispatch('getBooks')
+        // this.$store.dispatch('getFavorites')
     },
     computed: {
         booksAll() {
             return this.$store.getters.booksAll
-        }
+        },
+        // favoritesAll() {
+        //     return this.$store.getters.favoritesAll
+        // }
     },
     data() {
         return {

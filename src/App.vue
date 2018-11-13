@@ -18,83 +18,89 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
       isLoggedIn: false,
-      currentUser: false,
-    }
+      currentUser: false
+    };
   },
   created() {
     if (firebase.auth().currentUser) {
-      this.isLoggedIn = true
-      this.currentUser = firebase.auth().currentUser.email
-    }
-    else {
-      this.isLoggedIn = false
+      this.isLoggedIn = true;
+      this.currentUser = firebase.auth().currentUser.email;
+    } else {
+      this.isLoggedIn = false;
     }
   },
   methods: {
     logout() {
-      firebase.auth().signOut().then(() => {
-        this.$router.go({path: this.$router.path})
-      })
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          localStorage.removeItem("email");
+          this.$router.go({ path: this.$router.path });
+        },
+        err => {
+          alert(err.message)
+        });
     }
   }
-}
+};
 </script>
 
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  #app {
-    font-family: 'Montserrat', Helvetica, Arial;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #222;
-    color: #aaa;
-    font-size: 24px;
-    height: 100vh;
-  }
-  .nav {
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    padding: 15px 0;
-    margin: 0;
-    background: #222;
-    border-bottom: 1px solid lightgrey;
-    margin-bottom: 24px;
-  }
-  .nav a {
-    color: #aaa;
-    padding: 0 25px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .nav a:hover {
-    color: whitesmoke;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  font-family: "Montserrat", Helvetica, Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #222;
+  color: #aaa;
+  font-size: 24px;
+  height: 100vh;
+}
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 15px 0;
+  margin: 0;
+  background: #222;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 24px;
+}
+.nav a {
+  color: #aaa;
+  padding: 0 25px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav a:hover {
+  color: whitesmoke;
+}
 
-  .nav img {
-    position: absolute;
-    left: 20px;
-    height: 40px;
-  }
+.nav img {
+  position: absolute;
+  left: 20px;
+  height: 40px;
+}
 
-  .email {
-    font-size: 14px;
-  }
-  label {
-    margin-top: -15px;
-  }
+.email {
+  font-size: 14px;
+}
+label {
+  margin-top: -15px;
+}
 </style>
