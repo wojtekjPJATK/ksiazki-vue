@@ -33,7 +33,7 @@ export default {
 .book-item {
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 25% 25% 25% 70px 70px;
+  grid-template-columns: 100px 25% 25% 25% 70px 70px;
   border-collapse: collapse;
 }
 .item {

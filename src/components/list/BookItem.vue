@@ -1,5 +1,6 @@
 <template>
     <div class="book-item">
+        <div class="item"><img class="cover" :id="title" :src="url" /></div>
         <div class="item">{{ title }}</div> 
         <div class="item">{{ genre }}</div>
         <div class="item"><div v-for="author in authors" :key="author.id">{{ author }}</div></div>
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import firebaseApp from 'firebase'
+
 export default {
   name: "book-item",
   props: {
@@ -25,7 +28,8 @@ export default {
       title: this.book.title,
       authors: this.book.authors,
       genre: this.book.genre,
-      favorited: this.book.favorite
+      favorited: this.book.favorite,
+      url: this.book.url
     };
   },
   methods: {
@@ -40,7 +44,20 @@ export default {
       this.authors = this.book.authors
       this.genre = this.book.genre
       this.favorited = this.book.favorite
+      this.url = this.book.url
     }
+  },
+  created() {
+    if (!this.url) return
+    let imageRef = firebaseApp.storage().ref(this.url)
+    imageRef.getDownloadURL()
+    .then(res => {
+      var img = document.getElementById(this.title)
+      img.src = res
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 };
 </script>
@@ -51,5 +68,11 @@ img {
   cursor: pointer;
   margin-top: 10px;
   margin-left: 10px;
+}
+
+.cover {
+  margin: 0;
+  padding: 0;
+  height: 100px;
 }
 </style>

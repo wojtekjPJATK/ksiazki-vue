@@ -2,7 +2,7 @@
     <div class="app">
         <ul class="nav">
             <li id="logo"><router-link :to="{ name: 'home' }"><img src="./assets/logo.png" alt=""/></router-link></li>
-            <li v-if="isLoggedIn"><span class="email gray-text">{{currentUser}}</span></li>
+            <li v-if="isLoggedIn"><span class="email white-text">{{currentUser}}</span></li>
             <li><router-link :to="{ name: 'home' }">Home</router-link></li>
             <li v-if="isLoggedIn"><router-link :to="{ name: 'books' }">Books</router-link></li>
             <li v-if="!isLoggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>

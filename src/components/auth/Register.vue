@@ -47,7 +47,9 @@ export default {
             alert(`Account created for ${this.email}`)
             localStorage.setItem("email", this.email)
             db.collection("user").add({ email: this.email, favorites: [] })
-            this.$router.go({ path: this.$router.path })
+            .then(res => {
+              this.$router.go({ path: this.$router.path })
+            })
           },
           err => {
             alert(err.message);

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import db from "../firebase";
+import {firebaseApp} from '../firebase'
+import db from '../firebase'
 
 Vue.use(Vuex);
 
@@ -28,23 +29,43 @@ export const store = new Vuex.Store({
         id: book.id,
         title: book.title,
         genre: book.genre,
-        authors: book.authors
+        authors: book.authors,
+        url: book.url
       })
     }
   },
   actions: {
+    
     addBook(context, book) {
+      let imageUrl
       db.collection('book').add({
         title: book.title,
         genre: book.genre,
         authors: book.authors
       })
       .then(doc => {
-        context.commit('addBook', {
+        const book = {
           id: doc.id,
           title: doc.title,
           genre: doc.genre,
           authors: doc.authors
+        }
+        return id
+      })
+      .then(id => {
+        firebaseApp.storage().ref('covers/' + id).put(book.image)
+        .then(file => {
+          imageUrl =  file.metadata.fullPath
+          let bookRef = db.collection('book').doc(id)
+          return bookRef.update({url: imageUrl}          )
+          // return firebaseApp.database.child('/book/' + id).update({url: imageUrl})
+          // return db.child('/book/' + id).update({url: imageUrl})
+        })
+        .then(() => {
+          context.commit('addBook', {
+            ...book,
+            url: imageUrl
+          })
         })
       })
     },
@@ -82,6 +103,7 @@ export const store = new Vuex.Store({
               title: doc.data().title,
               authors: doc.data().authors,
               genre: doc.data().genre,
+              url: doc.data().url,
               favorite: false
             };
             tmpBooks.push(data);

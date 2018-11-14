@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase';
 
 export default {
   name: "login",
@@ -43,10 +43,8 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert(`You are logged in as ${user.email}`);
-            console.log(user.email);
-            console.log(this.email);
-            localStorage.setItem("email", user.email);
+            alert('Signed in as ' + this.email)
+            localStorage.setItem("email", this.email);
             this.$router.go({ path: this.$router.path });
           },
           err => {
