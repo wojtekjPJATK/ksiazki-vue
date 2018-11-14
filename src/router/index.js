@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import LandingPage from '../components/static/LandingPage'
 import App from '../App'
 import BookList from '../components/list/BookList'
-import FavoriteList from '../components/list/FavoriteList'
 import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
 import firebase from 'firebase'
@@ -21,11 +20,6 @@ let router =  new Router({
       path: '/books',
       component: BookList,
       name: 'books',
-    },
-    {
-      path: '/favorites',
-      component: FavoriteList,
-      name: 'favorites',
       meta: {
         requiresAuth: true
       }

@@ -27,7 +27,7 @@
 
 <script>
 import firebase from "firebase";
-import db from '../../firebase'
+import db from "../../firebase";
 
 export default {
   name: "register",
@@ -44,10 +44,10 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert(`Account created for ${this.email}`);
-            localStorage.setItem('email', this.email)
-            db.collection('user').add({email: this.email, favorites: []})
-            this.$router.go({ path: this.$router.path });
+            alert(`Account created for ${this.email}`)
+            localStorage.setItem("email", this.email)
+            db.collection("user").add({ email: this.email, favorites: [] })
+            this.$router.go({ path: this.$router.path })
           },
           err => {
             alert(err.message);

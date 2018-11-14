@@ -26,36 +26,40 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
-    name: 'login',
-    data () {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        login(e) {
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-            .then(user => {
-                alert(`You are logged in as ${user.email}`)
-                console.log(user.email)
-                console.log(this.email)
-                localStorage.setItem('email', user.email)
-                this.$router.go({path: this.$router.path})
-            },
-            err => {
-                alert(err.message)
-            })
-        }
+  name: "login",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login(e) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert(`You are logged in as ${user.email}`);
+            console.log(user.email);
+            console.log(this.email);
+            localStorage.setItem("email", user.email);
+            this.$router.go({ path: this.$router.path });
+          },
+          err => {
+            console.log(err)
+            alert(err.message);
+          }
+        );
     }
-}
+  }
+};
 </script>
 
 
 <style>
-
 </style>
 
