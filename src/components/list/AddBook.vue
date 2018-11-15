@@ -21,17 +21,24 @@ export default {
       genre: "",
       author: "",
       image: null,
-      imageUrl: ''
+      imageUrl: ""
     };
   },
   methods: {
+    validateBook() {
+      if (typeof this.title == String) return true;
+    },
     addBook() {
       let authorsList = [];
       let tmpAuthors = this.author.split(", ");
       tmpAuthors.forEach(element => {
         authorsList.push(element);
       });
-      let file = []
+      let file = [];
+      if (!validateBook()) {
+        console.log("Invalid data in book");
+        return;
+      }
       this.$store.dispatch("addBook", {
         title: this.title,
         genre: this.genre,
@@ -39,15 +46,15 @@ export default {
         image: this.image
       });
     },
-    onFilePick (event) {
-        const files = event.target.files
-        let filename = files[0].name
-        const fileReader = new FileReader()
-        fileReader.addEventListener('load', () => {
-            this.imageUrl = fileReader.result
-        })
-        fileReader.readAsDataURL(files[0])
-        this.image = files[0]
+    onFilePick(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
     }
   }
 };
@@ -62,9 +69,9 @@ img {
 }
 
 #preview {
-    width: auto;
-    max-width: 100px;
-    height: 100px;
+  width: auto;
+  max-width: 100px;
+  height: 100px;
 }
 
 .upload-btn-wrapper {
@@ -85,10 +92,10 @@ img {
 }
 
 .btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type="file"] {
   font-size: 50px;
   position: absolute;
   left: 0;

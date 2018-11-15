@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import firebaseApp from 'firebase'
+import firebaseApp from "firebase";
 
 export default {
   name: "book-item",
@@ -34,30 +34,31 @@ export default {
   },
   methods: {
     changeFavorite(id) {
-      this.favorited = !this.favorited
-      this.$store.dispatch('changeFavorite', id)
+      this.favorited = !this.favorited;
+      this.$store.dispatch("changeFavorite", id);
     }
   },
   watch: {
     book() {
-      this.title = this.book.title
-      this.authors = this.book.authors
-      this.genre = this.book.genre
-      this.favorited = this.book.favorite
-      this.url = this.book.url
+      this.title = this.book.title;
+      this.authors = this.book.authors;
+      this.genre = this.book.genre;
+      this.favorited = this.book.favorite;
+      this.url = this.book.url;
     }
   },
   created() {
-    if (!this.url) return
-    let imageRef = firebaseApp.storage().ref(this.url)
-    imageRef.getDownloadURL()
-    .then(res => {
-      var img = document.getElementById(this.title)
-      img.src = res
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    if (!this.url) return;
+    let imageRef = firebaseApp.storage().ref(this.url);
+    imageRef
+      .getDownloadURL()
+      .then(res => {
+        var img = document.getElementById(this.title);
+        img.src = res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

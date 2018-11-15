@@ -5,7 +5,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="login card-panel grey lighten-4 black-text center">
           <h3>Register</h3>
-          <form action="index.html">
+          <form>
             <div class="input-field">
               <i class="material-icons prefix">email</i>
               <input type="email" id="email" v-model="email">
@@ -44,12 +44,13 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert(`Account created for ${this.email}`)
-            localStorage.setItem("email", this.email)
-            db.collection("user").add({ email: this.email, favorites: [] })
-            .then(res => {
-              this.$router.go({ path: this.$router.path })
-            })
+            alert(`Account created for ${this.email}`);
+            localStorage.setItem("email", this.email);
+            db.collection("user")
+              .add({ email: this.email, favorites: [] })
+              .then(res => {
+                this.$router.go({ path: this.$router.path });
+              });
           },
           err => {
             alert(err.message);

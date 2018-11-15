@@ -8,7 +8,6 @@
             <li v-if="!isLoggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>
             <li v-if="!isLoggedIn"><router-link :to="{ name: 'register' }">Register</router-link></li>
             <li v-if="isLoggedIn"><button v-on:click="logout" class="btn gray">Logout</button></li>
-
         </ul>
 
         <router-view></router-view>
@@ -31,6 +30,7 @@ export default {
     if (firebase.auth().currentUser) {
       this.isLoggedIn = true;
       this.currentUser = firebase.auth().currentUser.email;
+      localStorage.setItem("email", this.currentUser);
     } else {
       this.isLoggedIn = false;
     }
@@ -40,13 +40,15 @@ export default {
       firebase
         .auth()
         .signOut()
-        .then(() => {
-          localStorage.removeItem("email");
-          this.$router.go({ path: this.$router.path });
-        },
-        err => {
-          alert(err.message)
-        });
+        .then(
+          () => {
+            localStorage.removeItem("email");
+            this.$router.go({ path: this.$router.path });
+          },
+          err => {
+            alert(err.message);
+          }
+        );
     }
   }
 };
