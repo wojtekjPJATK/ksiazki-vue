@@ -61,8 +61,6 @@ export const store = new Vuex.Store({
               imageUrl = file.metadata.fullPath;
               let bookRef = db.collection("book").doc(id);
               return bookRef.update({ url: imageUrl });
-              // return firebaseApp.database.child('/book/' + id).update({url: imageUrl})
-              // return db.child('/book/' + id).update({url: imageUrl})
             })
             .then(() => {
               context.commit("addBook", {
@@ -76,7 +74,7 @@ export const store = new Vuex.Store({
       let book = context.state.books.find(item => item.id == id);
       book.favorite = !book.favorite;
       let user_id = false;
-      let email = firebase.auth().currentUser.email;
+      let email = firebaseApp.auth().currentUser.email;
       db.collection("user")
         .where("email", "==", localStorage.getItem("email").toString())
         .get()

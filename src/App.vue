@@ -5,6 +5,7 @@
             <li v-if="isLoggedIn"><span class="email white-text">{{currentUser}}</span></li>
             <li><router-link :to="{ name: 'home' }">Home</router-link></li>
             <li v-if="isLoggedIn"><router-link :to="{ name: 'books' }">Books</router-link></li>
+            <li v-if="isLoggedIn"><router-link :to="{ name: 'favorites' }">favorites</router-link></li>
             <li v-if="!isLoggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>
             <li v-if="!isLoggedIn"><router-link :to="{ name: 'register' }">Register</router-link></li>
             <li v-if="isLoggedIn"><button v-on:click="logout" class="btn gray">Logout</button></li>
