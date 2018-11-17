@@ -1,0 +1,88 @@
+[debug] [2018-11-17T14:35:41.901Z] ----------------------------------------------------------------------
+[debug] [2018-11-17T14:35:41.905Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Wojtek\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-11-17T14:35:41.905Z] CLI Version:   6.1.0
+[debug] [2018-11-17T14:35:41.905Z] Platform:      win32
+[debug] [2018-11-17T14:35:41.905Z] Node Version:  v10.13.0
+[debug] [2018-11-17T14:35:41.907Z] Time:          Sat Nov 17 2018 15:35:41 GMT+0100 (GMT+01:00)
+[debug] [2018-11-17T14:35:41.907Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-17T14:35:41.923Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-17T14:35:41.924Z] > authorizing via signed-in user
+[debug] [2018-11-17T14:35:41.924Z] [iam] checking project books-4fc48 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2018-11-17T14:35:41.926Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-11-17T14:35:41.926Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-11-17T14:35:42.560Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-17T14:35:42.567Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/books-4fc48:testIamPermissions  
+
+[debug] [2018-11-17T14:35:43.714Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-17T14:35:43.715Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/books-4fc48  
+ 
+[debug] [2018-11-17T14:35:44.223Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'books-4fc48'...
+[info] 
+[info] i  deploying hosting
+[debug] [2018-11-17T14:35:44.227Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/books-4fc48/versions  
+
+[debug] [2018-11-17T14:36:21.879Z] ----------------------------------------------------------------------
+[debug] [2018-11-17T14:36:21.882Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Wojtek\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-11-17T14:36:21.882Z] CLI Version:   6.1.0
+[debug] [2018-11-17T14:36:21.882Z] Platform:      win32
+[debug] [2018-11-17T14:36:21.882Z] Node Version:  v10.13.0
+[debug] [2018-11-17T14:36:21.883Z] Time:          Sat Nov 17 2018 15:36:21 GMT+0100 (GMT+01:00)
+[debug] [2018-11-17T14:36:21.883Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-17T14:36:21.893Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-17T14:36:21.895Z] > authorizing via signed-in user
+[debug] [2018-11-17T14:36:21.895Z] [iam] checking project books-4fc48 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2018-11-17T14:36:21.899Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/books-4fc48:testIamPermissions  
+
+[debug] [2018-11-17T14:36:22.966Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-17T14:36:22.968Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/books-4fc48  
+ 
+[debug] [2018-11-17T14:36:23.423Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'books-4fc48'...
+[info] 
+[info] i  deploying hosting
+[debug] [2018-11-17T14:36:23.430Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/books-4fc48/versions  
+
+[debug] [2018-11-17T14:36:24.328Z] <<< HTTP RESPONSE 200
+[info] i  hosting[books-4fc48]: beginning deploy...
+[info] i  hosting[books-4fc48]: found 10 files in ./dist
+[debug] [2018-11-17T14:36:24.342Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-11-17T14:36:25.070Z] [hosting] hash cache [ZGlzdA] stored for 10 files
+[debug] [2018-11-17T14:36:25.071Z] [hosting][hash queue][FINAL]
+[debug] [2018-11-17T14:36:25.071Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/books-4fc48/versions/1ea2aee38cd62ae9:populateFiles  
+ <request body omitted>
+[debug] [2018-11-17T14:36:26.468Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-17T14:36:26.472Z] [hosting][populate queue][FINAL]
+[debug] [2018-11-17T14:36:26.472Z] [hosting] uploads queued: undefined
+[debug] [2018-11-17T14:36:29.339Z] [hosting][upload queue][FINAL]
+[info] +  hosting[books-4fc48]: file upload complete
+[debug] [2018-11-17T14:36:29.340Z] [hosting] deploy completed after 5010ms
+[debug] [2018-11-17T14:36:29.619Z] [
+  {
+    "config": {
+      "public": "./dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "books-4fc48"
+    },
+    "site": "books-4fc48",
+    "version": "sites/books-4fc48/versions/1ea2aee38cd62ae9"
+  }
+]
+[info] i  hosting[books-4fc48]: finalizing version...
+[debug] [2018-11-17T14:36:29.620Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/books-4fc48/versions/1ea2aee38cd62ae9?updateMask=status  
+
